@@ -284,6 +284,41 @@ export default class Game extends Phaser.Scene {
       space: Phaser.Input.Keyboard.KeyCodes.SPACE,
     });
 
+    // Controlos de toque (telemóvel)
+    this.touchLeft = false;
+    this.touchRight = false;
+    this.touchJump = false;
+
+    const touchBtnStyle = { fontSize: '28px', fill: '#333', fontFamily: 'sans-serif' };
+    const touchY = 420;
+
+    const btnLeft = this.add.text(70, touchY, '←', touchBtnStyle).setOrigin(0.5);
+    btnLeft.setBackgroundColor('rgba(255,255,255,0.8)');
+    btnLeft.setPadding(28, 20);
+    btnLeft.setScrollFactor(0).setDepth(100);
+    btnLeft.setInteractive({ useHandCursor: false });
+    btnLeft.on('pointerdown', () => { this.touchLeft = true; });
+    btnLeft.on('pointerup', () => { this.touchLeft = false; });
+    btnLeft.on('pointerout', () => { this.touchLeft = false; });
+
+    const btnRight = this.add.text(150, touchY, '→', touchBtnStyle).setOrigin(0.5);
+    btnRight.setBackgroundColor('rgba(255,255,255,0.8)');
+    btnRight.setPadding(28, 20);
+    btnRight.setScrollFactor(0).setDepth(100);
+    btnRight.setInteractive({ useHandCursor: false });
+    btnRight.on('pointerdown', () => { this.touchRight = true; });
+    btnRight.on('pointerup', () => { this.touchRight = false; });
+    btnRight.on('pointerout', () => { this.touchRight = false; });
+
+    const btnJump = this.add.text(720, touchY, '↑', touchBtnStyle).setOrigin(0.5);
+    btnJump.setBackgroundColor('rgba(255,255,255,0.8)');
+    btnJump.setPadding(28, 20);
+    btnJump.setScrollFactor(0).setDepth(100);
+    btnJump.setInteractive({ useHandCursor: false });
+    btnJump.on('pointerdown', () => { this.touchJump = true; });
+    btnJump.on('pointerup', () => { this.touchJump = false; });
+    btnJump.on('pointerout', () => { this.touchJump = false; });
+
     // Start background music on first user interaction (browser autoplay policy), só se o som não estiver desligado
     const startMusicOnce = () => {
       if (!isMusicRunning() && !isSoundMuted()) startBackgroundMusic();
@@ -324,9 +359,9 @@ export default class Game extends Phaser.Scene {
       e.setVelocityY(Math.sin(t + phase) * amp);
     });
 
-    const left = this.cursors.left.isDown || this.cursors.a.isDown;
-    const right = this.cursors.right.isDown || this.cursors.d.isDown;
-    const jump = this.cursors.up.isDown || this.cursors.w.isDown || this.cursors.space.isDown;
+    const left = this.cursors.left.isDown || this.cursors.a.isDown || this.touchLeft;
+    const right = this.cursors.right.isDown || this.cursors.d.isDown || this.touchRight;
+    const jump = this.cursors.up.isDown || this.cursors.w.isDown || this.cursors.space.isDown || this.touchJump;
 
     if (left) this.player.setVelocityX(-180);
     else if (right) this.player.setVelocityX(180);
