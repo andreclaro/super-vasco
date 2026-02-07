@@ -1,6 +1,7 @@
 /**
- * Simple looping background melody using Web Audio API (no audio files).
- * Starts on first user interaction to satisfy browser autoplay policy.
+ * Looping background melody: Super Mario Bros. Overworld (Ground) theme,
+ * synthesized with Web Audio API (no audio files). Starts on first user
+ * interaction to satisfy browser autoplay policy.
  */
 
 const NOTE_FREQ = {
@@ -11,18 +12,24 @@ const NOTE_FREQ = {
   G4: 392.0,
   A4: 440.0,
   B4: 493.88,
+  Bb4: 466.16,
   C5: 523.25,
+  D5: 587.33,
   E5: 659.25,
+  F5: 698.46,
   G5: 783.99,
+  A5: 880.0,
 };
 
-// Cheerful short melody (note name, duration in beats)
+// Super Mario Bros. Overworld (Ground) theme – melody loop (synth only, no audio files)
 const MELODY = [
-  ['C4', 0.5], ['E4', 0.5], ['G4', 0.5], ['C5', 0.5],
-  ['G4', 0.5], ['E4', 0.5], ['C4', 1],
-  ['G4', 0.5], ['E4', 0.5], ['C4', 0.5], ['G4', 1],
-  ['E4', 0.5], ['G4', 0.5], ['C5', 0.5], ['E5', 0.5],
-  ['C5', 1], ['G4', 1], ['C4', 1.5],
+  ['E5', 0.5], ['E5', 0.25], ['E5', 0.25], ['C5', 0.5], ['E5', 0.5], ['G5', 1],
+  ['G4', 1],
+  ['C5', 0.5], ['G4', 0.5], ['E4', 0.5], ['A4', 0.5], ['B4', 0.25], ['Bb4', 0.25], ['A4', 0.5], ['G4', 1],
+  ['E5', 0.5], ['G5', 0.25], ['G5', 0.25], ['A5', 0.5], ['F5', 0.25], ['G5', 0.25], ['E5', 0.5], ['C5', 0.25], ['D5', 0.25], ['B4', 1],
+  ['G4', 0.5], ['E5', 0.5], ['G5', 0.5], ['A5', 0.5], ['F5', 0.25], ['G5', 0.25], ['E5', 0.5], ['C5', 0.25], ['D5', 0.25], ['B4', 1],
+  ['G4', 0.5], ['E5', 0.5], ['G5', 0.5], ['A5', 0.5], ['F5', 0.25], ['G5', 0.25], ['E5', 0.5], ['C5', 0.25], ['D5', 0.25], ['B4', 1],
+  ['C5', 0.5], ['C4', 0.5], ['C4', 0.5], ['E4', 0.5], ['G4', 0.5], ['G4', 0.25], ['C4', 0.5], ['E4', 0.5], ['G5', 0.5], ['G4', 0.5], ['G4', 0.5],
 ];
 
 const BPM = 100;

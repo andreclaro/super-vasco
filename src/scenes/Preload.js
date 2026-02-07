@@ -10,45 +10,56 @@ export default class Preload extends Phaser.Scene {
   }
 
   createPlaceholderTextures() {
-    // Vasco: pixel-style character (red cap, face, blue overalls)
+    // Vasco: mergulhador – cabeça grande bege, óculos e snorkel vermelhos, fato azul, cinto vermelho, emblema peixes, barbatanas
     const vascoGraphics = this.make.graphics({ x: 0, y: 0, add: false });
     const M = 2; // scale / pixel size (16x16 logical → 32x32 texture)
-    // Cap (red)
-    vascoGraphics.fillStyle(0xe52521, 1);
-    vascoGraphics.fillRect(2 * M, 0, 12 * M, 5 * M);
-    vascoGraphics.fillRect(1 * M, 3 * M, 14 * M, 4 * M);
-    // Cap brim
-    vascoGraphics.fillRect(0, 5 * M, 16 * M, 2 * M);
-    // Face (skin)
-    vascoGraphics.fillStyle(0xffdbac, 1);
-    vascoGraphics.fillRect(3 * M, 6 * M, 10 * M, 8 * M);
-    // Eyes (white + pupil)
-    vascoGraphics.fillStyle(0xffffff, 1);
-    vascoGraphics.fillRect(4 * M, 8 * M, 2 * M, 2 * M);
-    vascoGraphics.fillRect(10 * M, 8 * M, 2 * M, 2 * M);
+    const blueSuit = 0x1e5aa8;   // azul royal do fato
+    const redAccent = 0xe52521;  // vermelho óculos, snorkel, cinto
+    const skin = 0xffdbac;       // bege/claro da cara
+    // Topo da cabeça (azul – cap do fato)
+    vascoGraphics.fillStyle(blueSuit, 1);
+    vascoGraphics.fillRect(3 * M, 0, 10 * M, 3 * M);
+    vascoGraphics.fillRect(2 * M, 2 * M, 12 * M, 2 * M);
+    // Cara (bege, redonda)
+    vascoGraphics.fillStyle(skin, 1);
+    vascoGraphics.fillRect(3 * M, 3 * M, 10 * M, 5 * M);
+    vascoGraphics.fillRect(2 * M, 5 * M, 12 * M, 4 * M);
+    // Óculos vermelhos (grandes, redondos)
+    vascoGraphics.fillStyle(redAccent, 1);
+    vascoGraphics.fillEllipse(5 * M, 5 * M, 3 * M, 2.5 * M);
+    vascoGraphics.fillEllipse(11 * M, 5 * M, 3 * M, 2.5 * M);
+    // Snorkel (tubo vermelho ao lado)
+    vascoGraphics.fillRect(13 * M, 3 * M, 2 * M, 4 * M);
+    vascoGraphics.fillRect(14 * M, 2 * M, 2 * M, 2 * M);
+    // Olhos (pontos pretos) e sorriso (linha azul)
     vascoGraphics.fillStyle(0x000000, 1);
-    vascoGraphics.fillRect(5 * M, 9 * M, 1 * M, 1 * M);
-    vascoGraphics.fillRect(11 * M, 9 * M, 1 * M, 1 * M);
-    // Moustache (brown)
-    vascoGraphics.fillStyle(0x8b4513, 1);
-    vascoGraphics.fillRect(4 * M, 11 * M, 8 * M, 2 * M);
-    // Overalls (blue)
-    vascoGraphics.fillStyle(0x0066cc, 1);
-    vascoGraphics.fillRect(2 * M, 13 * M, 12 * M, 6 * M);
-    vascoGraphics.fillStyle(0x004499, 1);
-    vascoGraphics.fillRect(6 * M, 14 * M, 4 * M, 5 * M); // center stripe
-    // Buttons (yellow)
-    vascoGraphics.fillStyle(0xffd700, 1);
-    vascoGraphics.fillRect(5 * M, 15 * M, 2 * M, 2 * M);
-    vascoGraphics.fillRect(9 * M, 15 * M, 2 * M, 2 * M);
-    // Gloves (white)
+    vascoGraphics.fillRect(5 * M, 5 * M, 1 * M, 1 * M);
+    vascoGraphics.fillRect(11 * M, 5 * M, 1 * M, 1 * M);
+    vascoGraphics.fillStyle(blueSuit, 1);
+    vascoGraphics.fillRect(4 * M, 7 * M, 8 * M, 1 * M);
+    // Fato azul (corpo)
+    vascoGraphics.fillStyle(blueSuit, 1);
+    vascoGraphics.fillRect(2 * M, 8 * M, 12 * M, 6 * M);
+    vascoGraphics.fillRect(1 * M, 9 * M, 2 * M, 4 * M);
+    vascoGraphics.fillRect(13 * M, 9 * M, 2 * M, 4 * M);
+    // Cinto vermelho e fivela
+    vascoGraphics.fillStyle(redAccent, 1);
+    vascoGraphics.fillRect(2 * M, 12 * M, 12 * M, 1 * M);
+    vascoGraphics.fillRect(6 * M, 11 * M, 4 * M, 2 * M);
+    // Emblema branco no peito (círculo com peixes/ondas estilizados)
     vascoGraphics.fillStyle(0xffffff, 1);
-    vascoGraphics.fillRect(0, 14 * M, 3 * M, 3 * M);
-    vascoGraphics.fillRect(13 * M, 14 * M, 3 * M, 3 * M);
-    // Shoes (brown)
-    vascoGraphics.fillStyle(0x654321, 1);
-    vascoGraphics.fillRect(3 * M, 18 * M, 4 * M, 2 * M);
-    vascoGraphics.fillRect(9 * M, 18 * M, 4 * M, 2 * M);
+    vascoGraphics.fillCircle(8 * M, 10 * M, 2.5 * M);
+    vascoGraphics.fillStyle(0xb0d4e8, 1); // azul claro para sugerir peixes no emblema
+    vascoGraphics.fillEllipse(7 * M, 9 * M, 0.8 * M, 1.8 * M);
+    vascoGraphics.fillEllipse(9 * M, 10 * M, 0.8 * M, 1.8 * M);
+    vascoGraphics.fillEllipse(8 * M, 11 * M, 1.2 * M, 0.8 * M);
+    // Pernas e barbatanas azuis
+    vascoGraphics.fillStyle(blueSuit, 1);
+    vascoGraphics.fillRect(3 * M, 14 * M, 4 * M, 2 * M);
+    vascoGraphics.fillRect(9 * M, 14 * M, 4 * M, 2 * M);
+    // Barbatanas (forma de pé de pato – mais largas em baixo)
+    vascoGraphics.fillEllipse(4 * M, 15 * M, 3 * M, 1.5 * M);
+    vascoGraphics.fillEllipse(12 * M, 15 * M, 3 * M, 1.5 * M);
     vascoGraphics.generateTexture('vasco', 32, 32);
 
     // Platform/block: brown
