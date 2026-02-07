@@ -8,7 +8,7 @@ const config = {
   type: Phaser.AUTO,
   parent: 'game-container',
   width: 800,
-  height: 480,
+  height: 544, // 480 jogo + 64 faixa para botões de toque (não sobrepõem o nível)
   pixelArt: false,
   backgroundColor: '#2A2A38',
   physics: {

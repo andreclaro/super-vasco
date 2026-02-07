@@ -110,6 +110,9 @@ export default class Game extends Phaser.Scene {
     this.won = false;
     this.coinsCollected = 0;
 
+    // Área de jogo 800x480; faixa y 480–544 reservada aos botões de toque
+    this.physics.world.setBounds(0, 0, 800, 480);
+
     // Natural landscape background (behind everything)
     const bg = this.add.image(400, 240, 'landscape');
     bg.setDepth(-1);
@@ -289,8 +292,12 @@ export default class Game extends Phaser.Scene {
     this.touchRight = false;
     this.touchJump = false;
 
+    // Faixa de controlos abaixo do jogo (y 480–544), para não tapar o nível
+    const controlBar = this.add.rectangle(400, 512, 800, 64, 0x1a1a2e, 0.95);
+    controlBar.setScrollFactor(0).setDepth(99);
+
     const touchBtnStyle = { fontSize: '28px', fill: '#333', fontFamily: 'sans-serif' };
-    const touchY = 420;
+    const touchY = 512; // centro da faixa de 64px
 
     const btnLeft = this.add.text(70, touchY, '←', touchBtnStyle).setOrigin(0.5);
     btnLeft.setBackgroundColor('rgba(255,255,255,0.8)');
